@@ -1,6 +1,8 @@
+# -*- coding: utf-8 -*-
+
 import random
 import numpy as np
-from classes.Individual import Individual
+from Classes_GA.Individual import Individual
 
 class Generator(object):
 

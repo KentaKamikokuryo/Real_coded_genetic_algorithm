@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 from abc import ABC, abstractmethod
 import numpy as np
 import random
@@ -55,6 +56,7 @@ class RouletteSelector(IndividualSelector):
 
             sum = 0.0
             for index, value in enumerate(evaluate_list):
+
                 sum += value
 
                 if sum >= threshold:

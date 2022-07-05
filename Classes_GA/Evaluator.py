@@ -1,6 +1,8 @@
+# -*- coding: utf-8 -*-
+
 import math
 from abc import ABC, abstractmethod
-from classes.Individual import Individual
+from Classes_GA.Individual import Individual
 
 class Evaluator(ABC):
 
@@ -22,6 +24,11 @@ class Rastrigin(Evaluator):
 
     def _evaluate_function(self, gene):
 
-        return (10 + (gene * gene - 10 * math.cos(2*math.pi*gene))).sum()
+        value=0
+
+        for x in gene:
+            value += 10 + (x*x - 10 * math.cos(2*math.pi*x))
+
+        return value
 
 

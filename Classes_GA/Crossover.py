@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 import random
 import math
 import numpy as np
-from classes.Individual import Individual
+from Classes_GA.Individual import Individual
 from typing import List
 
 class Crossover(ABC):

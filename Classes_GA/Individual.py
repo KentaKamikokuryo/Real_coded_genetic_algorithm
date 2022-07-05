@@ -1,4 +1,6 @@
-from classes.Evaluator import *
+# -*- coding: utf-8 -*-
+
+from Classes_GA.Evaluator import *
 import numpy as np
 
 class Individual():

@@ -1,8 +1,8 @@
-# -*- coding: ytf-8 -*-
+# -*- coding: utf-8 -*-
 
 from abc import ABC, abstractmethod
 import random
-from classes.Individual_selector import *
+from Classes_GA.Individual_selector import *
 
 class GenerationSelector(ABC):
     """
@@ -19,7 +19,6 @@ class GenerationSelector(ABC):
         :return:
         """
         pass
-
 
 class MGG(GenerationSelector):
     """
