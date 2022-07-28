@@ -11,11 +11,20 @@ class PathInfo:
 
     def _set_folder(self):
 
-        self.folder_GA = self.path_parent_project + "\\GAfig\\"
-        if not (os.path.exists(self.folder_GA)):
-            os.makedirs(self.folder_GA)
-        print("Figure will be saved to: " + self.folder_GA)
+        self._folder_GA = self.path_parent_project + "\\GAfig\\"
+        if not (os.path.exists(self._folder_GA)):
+            os.makedirs(self._folder_GA)
+        print("Figure will be saved to: " + self._folder_GA)
+
+        self._folder_hist = self.path_parent_project + "\\GAhis\\"
+        if not (os.path.exists(self._folder_hist)):
+            os.makedirs(self._folder_hist)
+        print("History will be saved to: " + self._folder_hist)
 
     @property
-    def GAfig(self):
-        return self.folder_GA
+    def folder_GA(self):
+        return self._folder_GA
+
+    @property
+    def folder_hist(self):
+        return self._folder_hist

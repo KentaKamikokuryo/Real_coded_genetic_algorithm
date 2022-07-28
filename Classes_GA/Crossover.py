@@ -7,6 +7,11 @@ import numpy as np
 from Classes_GA.Individual import Individual
 from typing import List
 
+class CrossoverName():
+
+    BLX_a = "BLX_alpha"
+    SPX = "Simplex"
+
 class Crossover(ABC):
 
     def __init__(self, generate_size: int):
@@ -43,14 +48,14 @@ class BLX_alpha(Crossover):
         gene_abs = np.abs(gene_max - gene_min)
 
         gene_max = gene_max + self._alpha * gene_abs
-        gene_min = gene_min + self._alpha * gene_abs
+        gene_min = gene_min - self._alpha * gene_abs
 
         result = []
 
         for _ in range(self._generate_size):
 
             gene = [random.uniform(g_min, g_max) for g_max, g_min in zip(gene_max, gene_min)]
-            result.append(gene)
+            result.append(Individual(gene))
 
         return result
 
@@ -58,7 +63,10 @@ class Simplex(Crossover):
 
     def crossover(self, individuals: List[Individual], parent_list: list) -> list:
 
+        """matrix: selection_num * dimension"""
         matrix = np.array([individuals[x].gene for x in parent_list])
+
+        """center: dimension"""
         center = matrix.mean(axis=0)
 
         dimension = len(center)
@@ -77,6 +85,29 @@ class Simplex(Crossover):
                 gene = r_k * (vector1 - vector2 + gene)
 
             gene += matrix[-1]
+            result.append(Individual(gene))
+
+        return result
+
+class REX(Crossover):
+
+    def crossover(self, individuals: List[Individual], parent_list: list) -> list:
+
+        matrix = np.array([individuals[x].gene for x in parent_list])
+        center = matrix.mean(axis=0)
+
+        result = []
+
+        epsilon = 0
+
+        for n in range(self._generate_size):
+
+            sigma = 1 / (n + 1)
+            epsilon += np.random.normal(0, np.sqrt(sigma))
+            temp = matrix[0:n, :] - center
+            sum_temp = np.sum(temp, axis=0)
+            gene = center + epsilon * np.sum(matrix[1:n, :] - center, axis=0)
+
             result.append(Individual(gene))
 
         return result

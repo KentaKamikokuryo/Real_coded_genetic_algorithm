@@ -4,6 +4,11 @@ from abc import ABC, abstractmethod
 import random
 from Classes_GA.Individual_selector import *
 
+class GenerationSelectorName():
+
+    MGG = "MGG"
+    JGG = "JGG"
+
 class GenerationSelector(ABC):
     """
     次世代に残す個体の選択方法のベース
@@ -50,7 +55,7 @@ class MGG(GenerationSelector):
 
         # 個体入れ替え
         for p, r in zip(parents_list, remain):
-            individuals[p] = children[r]
+            individuals[p] = r
 
         return individuals
 
