@@ -1,1 +1,1 @@
-# Inteligent_Machine_Design_2
+# Real coded genetic algorithm
